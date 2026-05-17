@@ -1,0 +1,44 @@
+.env
+.env*.local
+
+VIBE_HEIST_CONTEXT.md
+
+# Node modules (Root and nested)
+node_modules/
+/.pnp
+.pnp.*
+
+# Mac OS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+
+.vscode/
+.idea/
+*.swp
+*.swo
+*.iws
+*.iml
+
+# Build output for the game client
+client/dist/
+client/build/
+
+# Coverage
+client/coverage/
+
+!web/
+!sim/
+
+web/.next/
+web/out/
+sim/target/
+sim/pkg/
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*

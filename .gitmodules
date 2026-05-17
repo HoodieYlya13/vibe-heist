@@ -1,0 +1,9 @@
+[submodule "sim"]
+	path = sim
+	url = https://github.com/HoodieYlya13/vibe-engine.git
+[submodule "web"]
+	path = web
+	url = https://github.com/HoodieYlya13/vibe-heist-web.git
+[submodule "client"]
+	path = client
+	url = https://github.com/HoodieYlya13/vibe-heist-client.git

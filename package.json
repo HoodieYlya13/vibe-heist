@@ -1,0 +1,10 @@
+{
+  "name": "vibe-heist-root",
+  "private": true,
+  "scripts": {
+    "build": "next build"
+  },
+  "dependencies": {
+    "next": "latest"
+  }
+}
