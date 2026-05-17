@@ -12,7 +12,6 @@ if [ -n "$GITHUB_TOKEN" ]; then
     git config --global url."https://x-access-token:${GITHUB_TOKEN}@github.com/HoodieYlya13/vibe-heist-client.git".insteadOf "https://github.com/HoodieYlya13/vibe-heist-client.git"
     
     echo "🔄 Updating submodules..."
-    git submodule deinit -f .
     git submodule update --init --recursive
 else
     echo "⚠️ GITHUB_TOKEN not found. Skipping authenticated submodule update."
