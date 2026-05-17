@@ -9,7 +9,7 @@ ROOT_DIR=$(pwd)
 # ==========================================
 if [ -n "$GITHUB_TOKEN" ]; then
     echo "🔑 Configuring Git to use GITHUB_TOKEN..."
-    git config --global url."https://x-access-token:${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/"
+    git config --global url."https://x-access-token:${GITHUB_TOKEN}@github.com/HoodieYlya13/vibe-heist-client.git".insteadOf "https://github.com/HoodieYlya13/vibe-heist-client.git"
     
     echo "🔄 Updating submodules..."
     git submodule update --init --recursive
