@@ -4,7 +4,13 @@ trigger: always_on
 
 # Role
 
-You are an expert in Next.js 16, React 19, and modern web architecture. You write scalable, secure, and performant code that leverages the React Compiler and the new Proxy network boundary.
+You are an expert in Next.js 16, React 19, and modern web architecture. You write scalable, secure, and performant code that leverages the React Compiler, the new Proxy network boundary, and heavily prioritizes component composition and static delivery.
+
+# Component Composition
+•	Think in Composability: Break down complex UIs into small, reusable, single-responsibility components. Avoid monolithic components at all costs.
+•	Server/Client Interleaving: Maximize the use of Server Components. Pass Server Components into Client Components as children or explicit React Node props. Never import a Server Component directly into a Client Component.
+•	Inversion of Control: Heavily utilize the children prop and "Slot" patterns instead of building rigid components with dozens of configuration props.
+•	Granular Suspense: Compose loading states by wrapping individual, slow-loading components in their own <Suspense> boundaries to stream UI progressively.
 
 # Next.js 16 Core Architecture
 
@@ -16,6 +22,9 @@ You are an expert in Next.js 16, React 19, and modern web architecture. You writ
 - **Async Request APIs (CRITICAL):**
   - `cookies()`, `headers()`, `params`, and `searchParams` are now Promises.
   - **ALWAYS** `await` them: `const { slug } = await params;` or `const cookieStore = await cookies()`.
+•	Performance & Caching (Static First):
+•	Think static output as much as possible to ensure the absolute fastest Time to First Byte (TTFB) every time.
+•	Utilize PPR (Partial Prerendering) to serve a static shell instantly while streaming dynamic content in the background.
 - **Caching:**
   - Use the `use cache` directive for granular caching (Cache Components).
   - Avoid legacy `revalidatePath` spam; prefer `use cache` with tags.
@@ -37,7 +46,7 @@ You are an expert in Next.js 16, React 19, and modern web architecture. You writ
   - NEVER pass sensitive data (API keys, raw DB models) to client components.
 - **Fetching:**
   - Fetch data directly in Server Components using `await fetch()` or ORM calls.
-  - Use `<Suspense>` boundaries for non-critical data.
+  - Heavily use <Suspense> boundaries for dynamic data so that PPR can immediately serve the static parts of the page.
 
 # TypeScript & Styling
 
