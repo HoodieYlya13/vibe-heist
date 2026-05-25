@@ -70,3 +70,4 @@
   },
   "lessons_learned": "Developing Vibe Heist demonstrated that a native-grade, high-performance open-world game is entirely feasible in modern browsers when standard web overhead is systematically bypassed. A major takeaway is the power of zero-allocation game loops: by reusing Float32Array memory views and avoiding the generation of temporary vectors (e.g., 'new Vector3()') or serialization buffers in the update cycle, garbage collection pauses can be eliminated. Furthermore, building lock-free multi-threaded architectures in WebWorkers using SharedArrayBuffer and Atomics requires extreme precision regarding memory alignment and byte-stride layouts, but pays massive performance dividends that make modern browser standards like WebGPU shine at full capability."
 }
+
