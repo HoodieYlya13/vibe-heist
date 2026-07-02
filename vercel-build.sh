@@ -58,6 +58,7 @@ fi
 # ==========================================
 echo "🦀 Building Vibe Engine..."
 cd sim
+cargo run --quiet --bin gen_layout
 wasm-pack build --target web
 cd ..
 
