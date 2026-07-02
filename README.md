@@ -31,13 +31,30 @@ _Vibe Heist_ is an ambitious project to create a high-fidelity, open-world drivi
 git submodule update --init --recursive
 ```
 
-### 2. Run the Greybox (Local Dev)
+### 2. Build the Simulation Engine
+
+The client imports the WASM package from `sim/pkg` and the generated layout constants, so build the engine first (prerequisites: Rust + `wasm-pack`):
+
+```bash
+cd sim
+cargo run --bin gen_layout   # emits client/src/generated/sim-layout.ts
+wasm-pack build --target web # emits sim/pkg
+```
+
+### 3. Run the Greybox (Local Dev)
 
 ```bash
 cd client
 npm install && npm run dev
 ```
 
-### 3. Deploy to Vercel (Production)
+### 4. Deploy to Vercel (Production)
 
-Pushing to `main` triggers the `vercel-build.sh` script, which compiles the Rust engine, builds the game client, and injects the artifacts into the Next.js web portal.
+Pushing to `main` triggers the `vercel-build.sh` script, which regenerates the shared layout constants, compiles the Rust engine, builds the game client, and injects the artifacts into the Next.js web portal.
+
+## ✅ Continuous Integration
+
+CI lives in the submodules, next to the code it tests:
+
+- **`sim`**: `cargo fmt` / `clippy -D warnings` / `cargo test` (deterministic vehicle replay tests) on every push.
+- **`client`**: `tsc --noEmit` type check on every push (the local `sim` WASM package is stubbed, so no Rust toolchain is needed).
