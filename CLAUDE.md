@@ -63,3 +63,4 @@ The in-app browser pane does not present WebGPU frames while it is hidden, so sc
 - Glass must cast shadows: a facade with open window holes lets sunlight through the building.
 - Local lights go through `NightLights` (`render/night-lights.ts`), never straight into the scene: a loose point or spot light recompiles every material. The pool has a fixed capacity because Babylon 9.35 breaks when a clustered container grows.
 - The clustered container ignores a light's enabled state; switch a lamp with `isOn`.
+- A post-process's `size` is the size of the texture it reads, so the pass before it renders at that size (`render/bounce-light.ts`).
