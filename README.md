@@ -6,11 +6,12 @@ This is the public root repository for the _Vibe Heist_ open-world browser game,
 
 ## ✨ About Vibe Heist
 
-_Vibe Heist_ is an ambitious project to create a high-fidelity, open-world driving and action game that runs entirely in the browser. We are rejecting standard web game patterns in favor of a native-performance architecture.
+_Vibe Heist_ is an ambitious project to create a photoreal open-world driving and action game that runs entirely in the browser. We are rejecting standard web game patterns in favor of a native-performance architecture, and we are not targeting low-end hardware.
 
 ### 🏎️ Tech Highlights
 - **Native Performance:** The core game simulation is written in Rust and compiled to WebAssembly (WASM) for high-speed execution.
-- **Next-Gen Web Graphics:** Rendering is powered by Babylon.js running on the new **WebGPU** standard for console-quality visuals in a browser tab.
+- **Next-Gen Web Graphics:** Rendering is powered by Babylon.js on **WebGPU**: HDR pipeline, physically based sky and materials, cascaded shadows, screen-space reflections and occlusion, temporal antialiasing.
+- **A generated city:** streets, blocks and buildings are planned from data and meshed per streaming chunk — no building kit.
 - **Extreme Decoupling (Shared Memory):** The simulation "brain" (Rust) and the visual "eyes" (JS/Babylon) are strictly separated. JavaScript is kept minimal and acts merely as the "glue". To avoid slow message passing, both layers read from the same shared memory buffer (RAM), allowing zero-copy communication at native speeds.
 
 ## 📂 Structure
@@ -41,7 +42,7 @@ cargo run --bin gen_layout   # emits client/src/generated/sim-layout.ts
 wasm-pack build --target web # emits sim/pkg
 ```
 
-### 3. Run the Greybox (Local Dev)
+### 3. Run the Game (Local Dev)
 
 ```bash
 cd client
@@ -57,4 +58,8 @@ Pushing to `main` triggers the `vercel-build.sh` script, which regenerates the s
 CI lives in the submodules, next to the code it tests:
 
 - **`sim`**: `cargo fmt` / `clippy -D warnings` / `cargo test` (deterministic vehicle replay tests) on every push.
-- **`client`**: `tsc --noEmit` type check on every push (the local `sim` WASM package is stubbed, so no Rust toolchain is needed).
+- **`client`**: `tsc --noEmit` type check on every push (the local `sim` WASM package is stubbed, so no Rust toolchain is needed). Headless WebGPU smoke tests run locally with `npm run test:smoke`.
+
+## 🤖 Working with AI agents
+
+Agent instructions live in [`CLAUDE.md`](./CLAUDE.md); the product direction and roadmap live in the client repository (`client/PRD.md`, `client/ROADMAP.md`).
