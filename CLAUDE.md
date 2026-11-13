@@ -51,6 +51,7 @@ The in-app browser pane does not present WebGPU frames while it is hidden, so sc
 - The game starts paused behind pointer lock; `client/tests/smoke.spec.ts` shows the shim that resumes it.
 - `window.__vibe` (test mode) exposes `scene`, `camera`, `bridge`, `lighting`, `materials`, `worldStreaming` and the render systems. `bridge.sendDev({ cmd: "set-time", fraction })` pins the time of day (0.5 noon, 0.74 sunset, 0 midnight).
 - Treat any `WebGPU uncaptured error` in the console as a failure: one invalid pipeline blanks the whole frame.
+- Measure frame rate at the owner's screen size (viewport 1728×1117 at device scale factor 2), while driving, never at the 1280×720 capture size: the frame costs about eight times more there.
 
 ## Engine facts that cost time once
 
